@@ -13,12 +13,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import io.github.bortoletoeric.movies.domain.model.Movie
 import movies.shared.generated.resources.Res
 import movies.shared.generated.resources.minecraft_movie
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-fun MoviePoster(modifier: Modifier = Modifier) {
+fun MoviePoster(
+    movie: Movie,
+    modifier: Modifier = Modifier
+) {
     Column(
         modifier = Modifier
             .width(140.dp)
@@ -35,7 +39,7 @@ fun MoviePoster(modifier: Modifier = Modifier) {
         }
 
         Text(
-            text = "Minecraft",
+            text = movie.title,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             style = MaterialTheme.typography.titleMedium,
