@@ -1,6 +1,5 @@
 package io.github.bortoletoeric.movies.ui.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -12,14 +11,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import io.github.bortoletoeric.movies.domain.model.Movie
-import movies.shared.generated.resources.Res
-import movies.shared.generated.resources.minecraft_movie
-import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun MoviePoster(
