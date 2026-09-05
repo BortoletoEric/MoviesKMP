@@ -14,7 +14,7 @@ class MoviesRepository(
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) {
 
-    suspend fun getMovieSections(category: String): MoviesListResponse {
+    suspend fun getMovieSections(): List<MovieSection> {
         return withContext(ioDispatcher) {
             val popularMoviesDeferred = async { KtorClient.getMovies("popular") }
             val topRatedMoviesDeferred = async { KtorClient.getMovies("top_rated") }
@@ -38,8 +38,6 @@ class MoviesRepository(
                     movies = upcomingMovies.results.map { it.toModel() }
                 )
             )
-
-            return@withContext popularMoviesDeferred.await()
         }
     }
 }
