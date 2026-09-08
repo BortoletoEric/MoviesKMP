@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -19,6 +20,12 @@ kotlin {
         }
     }
     
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs {
+        browser()
+        binaries.executable()
+    }
+
     android {
        namespace = "io.github.bortoletoeric.movies.shared"
        compileSdk = libs.versions.android.compileSdk.get().toInt()
@@ -75,6 +82,9 @@ kotlin {
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
+        }
+        wasmJsMain.dependencies {
+            implementation(libs.ktor.client.js)
         }
     }
 }
