@@ -1,31 +1,32 @@
-This is a Kotlin Multiplatform project targeting Android, iOS.
+# MoviesKMP
 
-* [/iosApp](./iosApp/iosApp) contains an iOS application. Even if you’re sharing your UI with Compose Multiplatform,
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+Aplicativo multiplataforma (Android e iOS) de catálogo de filmes construído com Kotlin Multiplatform (KMP) e Compose Multiplatform.
 
-* [/shared](./shared/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./shared/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./shared/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./shared/src/jvmMain/kotlin)
-    folder is the appropriate location.
+## Tecnologias Utilizadas
+- **Kotlin Multiplatform (KMP):** Compartilhamento de lógica de negócios e estado entre plataformas.
+- **Compose Multiplatform:** UI declarativa compartilhada.
+- **Android & iOS:** Módulos de aplicação nativa.
 
-### Running the apps
+## Estrutura do Projeto
+- `/androidApp`: Módulo do aplicativo Android. Contém o ponto de entrada (`MainActivity.kt`) e configurações do aplicativo.
+- `/iosApp`: Módulo do aplicativo iOS. Contém o projeto Xcode e o ponto de entrada (`MainViewController.kt`, `ContentView.swift`).
+- `/shared`: Módulo central contendo o código compartilhado.
+  - `commonMain`: Código e UI independentes de plataforma.
+    - `domain/model/Movie.kt`: Modelo de dados da aplicação.
+    - `navigation/AppRoutes.kt`: Gerenciamento de rotas e navegação.
+    - `ui/movies/MoviesListScreen.kt`: Tela principal de listagem.
+    - `ui/components/`: Componentes visuais da interface (`MoviePoster.kt`, `MoviesSection.kt`).
+    - `composeResources/`: Recursos estáticos da interface multiplataforma.
+  - `androidMain` / `iosMain`: Implementações específicas de plataforma (`Platform.kt`).
 
-Use the run configurations provided by the run widget in your IDE's toolbar. You can also use these commands and options:
+## Como Executar
 
-- Android app: `./gradlew :androidApp:assembleDebug`
-- iOS app: open the [/iosApp](./iosApp) directory in Xcode and run it from there.
+### Android
+1. Abra o projeto no Android Studio.
+2. Sincronize o projeto com o Gradle.
+3. Selecione a configuração de execução `androidApp` e execute.
 
-### Running tests
-
-Use the run button in your IDE's editor gutter, or run tests using Gradle tasks:
-
-- Android tests: `./gradlew :shared:testAndroidHostTest`
-- iOS tests: `./gradlew :shared:iosSimulatorArm64Test`
-
----
-
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+### iOS
+1. Certifique-se de ter o Xcode instalado no macOS.
+2. Sincronize o projeto via Gradle.
+3. Abra o projeto `iosApp/iosApp.xcodeproj` no Xcode ou execute o target `iosApp` diretamente via Android Studio/Fleet.
