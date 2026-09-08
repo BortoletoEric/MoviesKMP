@@ -6,12 +6,11 @@ import io.github.bortoletoeric.movies.domain.model.MovieSection
 import io.github.bortoletoeric.movies.domain.model.toModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 
 class MoviesRepository(
-    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
+    private val ioDispatcher: CoroutineDispatcher = Dispatchers.Default,
 ) {
 
     suspend fun getMovieSections(): List<MovieSection> {
