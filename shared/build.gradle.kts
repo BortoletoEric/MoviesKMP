@@ -26,6 +26,8 @@ kotlin {
         binaries.executable()
     }
 
+    jvm("desktop")
+
     android {
        namespace = "io.github.bortoletoeric.movies.shared"
        compileSdk = libs.versions.android.compileSdk.get().toInt()
@@ -85,6 +87,12 @@ kotlin {
         }
         wasmJsMain.dependencies {
             implementation(libs.ktor.client.js)
+        }
+        val desktopMain by getting {
+            dependencies {
+                implementation(libs.ktorclientjava)
+                implementation(libs.coroutineswing)
+            }
         }
     }
 }
